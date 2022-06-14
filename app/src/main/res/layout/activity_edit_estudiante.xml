@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EditEstudiante">
+
+    <TextView
+            android:text="Editar Estudiante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:textSize="30sp" android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNombre"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="107dp"
+            android:layout_marginEnd="107dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="80dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextNombre"
+            android:layout_marginBottom="55dp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextApellido"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="98dp"
+            android:layout_marginEnd="103dp" app:layout_constraintEnd_toEndOf="parent" android:hint="Nombre"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextApellido"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="98dp"
+            android:layout_marginEnd="103dp" app:layout_constraintEnd_toEndOf="parent" android:hint="Apellido"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toTopOf="@+id/editTextEdad"
+            android:layout_marginBottom="55dp"/>
+    <Button
+            android:text="Actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="158dp"
+            android:layout_marginEnd="159dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="207dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editTextEdad"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.487" app:layout_constraintBottom_toTopOf="@+id/button"
+            android:layout_marginBottom="55dp" android:hint="Edad"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
