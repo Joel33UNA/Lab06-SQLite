@@ -26,7 +26,7 @@
     <Button
             android:text="Editar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/btnEditar"
+            android:layout_height="wrap_content" android:id="@+id/btnAddCurso"
             app:backgroundTint="#4CAF50"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="250dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="158dp"
@@ -39,6 +39,6 @@
             android:id="@+id/editTextCreditosEdit"
             android:layout_marginEnd="102dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="100dp"
-            android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/btnEditar"
+            android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/btnAddCurso"
             android:hint="Créditos" app:layout_constraintHorizontal_bias="0.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

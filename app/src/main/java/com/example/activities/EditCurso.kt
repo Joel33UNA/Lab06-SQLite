@@ -20,7 +20,7 @@ class EditCurso : AppCompatActivity() {
         personArg = intent.getSerializableExtra("Login") as Estudiante
         val curso = intent.getSerializableExtra("Curso") as Curso
 
-        val actualizar = findViewById<Button>(R.id.btnEditar)
+        val actualizar = findViewById<Button>(R.id.btnAddCurso)
 
         actualizar.setOnClickListener{
             var editTextDescripcion = findViewById<EditText>(R.id.editTextDescripcionEdit)

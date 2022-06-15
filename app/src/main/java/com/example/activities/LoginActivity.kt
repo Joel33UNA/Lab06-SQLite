@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         var et_id = findViewById(R.id.et_id) as EditText
         var et_clave = findViewById(R.id.et_clave) as EditText
         var btn_submit = findViewById(R.id.btn_submit) as Button
+        var btn_registrarse = findViewById(R.id.button2) as Button
 
         // set on-click listener
         btn_submit.setOnClickListener {
@@ -40,6 +41,10 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "El usuario no se encuentra registrado", Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        btn_registrarse.setOnClickListener{
+            startActivity(Intent(this, AddEstudiante::class.java))
         }
     }
 }

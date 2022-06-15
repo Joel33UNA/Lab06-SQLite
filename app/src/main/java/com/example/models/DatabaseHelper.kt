@@ -228,6 +228,34 @@ class DatabaseHelper(context: Context) :
     }
 
     @SuppressLint("Range")
+    fun readCursosEst(idEs: Int): ArrayList<Curso> {
+        val cursos = ArrayList<Curso>()
+        val db = writableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery("select * from $TABLE_CURSO where $idEs = ID_ESTUDIANTE", null)
+        } catch (e: SQLiteException) {
+            return ArrayList()
+        }
+        var id = 0
+        var descripcion = ""
+        var creditos = 0
+        var idEstudiante = 0
+        if (cursor!!.moveToFirst()) {
+            while (cursor.isAfterLast == false) {
+                id = cursor.getInt(cursor.getColumnIndex(COD))
+                descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION))
+                creditos = cursor.getInt(cursor.getColumnIndex(CREDITOS))
+                idEstudiante = cursor.getInt(cursor.getColumnIndex(ID_ESTUDIANTE))
+
+                cursos.add(Curso(id, descripcion, creditos, idEstudiante))
+                cursor.moveToNext()
+            }
+        }
+        return cursos
+    }
+
+    @SuppressLint("Range")
     fun readCurso(id: String): ArrayList<Curso> {
         val cursos = ArrayList<Curso>()
         val db = writableDatabase
