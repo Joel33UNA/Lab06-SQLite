@@ -3,13 +3,12 @@ package com.example.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.example.models.DatabaseEstudiante
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    internal var databaseEstudiante = DatabaseEstudiante(this)
+    internal var databaseHelper = DatabaseHelper(this)
     lateinit var personArg : Estudiante
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +51,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_item_pesonas -> {
                 val i = Intent(this, CrudEstudiantes::class.java)
+                i.putExtra("Login", personArg)
+                startActivity(i)
+            }
+            R.id.nav_item_miscursos -> {
+                val i = Intent(this, MisCursos::class.java)
                 i.putExtra("Login", personArg)
                 startActivity(i)
             }

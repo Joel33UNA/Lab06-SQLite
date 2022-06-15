@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import com.example.models.DatabaseEstudiante
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 
 class EditEstudiante : AppCompatActivity() {
     lateinit var personArg : Estudiante
-    internal var databaseEstudiante = DatabaseEstudiante(this)
+    internal var databaseHelper = DatabaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class EditEstudiante : AppCompatActivity() {
             val nuevoEstudiante = Estudiante(estudiante.id, nombre.text.toString(), estudiante.clave,
                 apellido.text.toString(), Integer.parseInt(edad.text.toString()))
 
-            databaseEstudiante.updateData(nuevoEstudiante)
+            databaseHelper.updateEstudiante(nuevoEstudiante)
 
             val intent = Intent(this, CrudEstudiantes::class.java)
             intent.putExtra("Login", personArg)

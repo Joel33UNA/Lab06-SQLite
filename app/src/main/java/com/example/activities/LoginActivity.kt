@@ -6,17 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.models.DatabaseEstudiante
+import com.example.models.Curso
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 
 class LoginActivity : AppCompatActivity() {
-    internal var databaseEstudiante = DatabaseEstudiante(this)
+    internal var databaseHelper = DatabaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //this.databaseEstudiante.insertData(Estudiante(123, "Juan", "123", "Sanchez", 60))
+        this.databaseHelper.insertEstudiante(Estudiante(123, "Juan", "123", "Sanchez", 60))
+        //this.databaseHelper.insertCurso(Curso(0, "progra", 2, 123))
 
         var et_id = findViewById(R.id.et_id) as EditText
         var et_clave = findViewById(R.id.et_clave) as EditText
@@ -27,9 +29,9 @@ class LoginActivity : AppCompatActivity() {
             val id = et_id.text
             val clave = et_clave.text
             //Toast.makeText(this@LoginExample, user_name, Toast.LENGTH_LONG).show()
-            if(databaseEstudiante.login(id.toString(), clave.toString()) != null){
+            if(databaseHelper.login(id.toString(), clave.toString()) != null){
                 val bundle = Bundle()
-                val Login = databaseEstudiante.login(id.toString(), clave.toString())
+                val Login = databaseHelper.login(id.toString(), clave.toString())
                 val i = Intent(this, MainActivity::class.java)
                 i.putExtra("Login", Login)
                 startActivity(i)

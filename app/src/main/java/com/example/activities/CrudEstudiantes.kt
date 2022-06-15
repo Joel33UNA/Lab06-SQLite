@@ -13,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.models.DatabaseEstudiante
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
@@ -23,7 +23,7 @@ import kotlin.collections.ArrayList
 class CrudEstudiantes : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    internal var databaseEstudiante = DatabaseEstudiante(this)
+    internal var databaseHelper = DatabaseHelper(this)
     lateinit var lista: RecyclerView
     lateinit var adaptador:RecyclerView_Adapter
     lateinit var estudiante: Estudiante
@@ -70,7 +70,7 @@ class CrudEstudiantes : AppCompatActivity() {
                         val fromPosition: Int = viewHolder.adapterPosition
                         val toPosition: Int = target.adapterPosition
 
-                        Collections.swap(databaseEstudiante.readEstudiantes(), fromPosition, toPosition)
+                        Collections.swap(databaseHelper.readEstudiantes(), fromPosition, toPosition)
 
                         lista.adapter?.notifyItemMoved(fromPosition, toPosition)
 
@@ -80,18 +80,18 @@ class CrudEstudiantes : AppCompatActivity() {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                         position = viewHolder.adapterPosition
-                        archived = databaseEstudiante.readEstudiantes()
+                        archived = databaseHelper.readEstudiantes()
 
                         if(direction == ItemTouchHelper.LEFT){
-                            databaseEstudiante.deleteData(archived[position].id.toString())
+                            databaseHelper.deleteEstudiante(archived[position].id.toString())
                             lista.adapter?.notifyItemRemoved(position)
-                            adaptador = RecyclerView_Adapter(databaseEstudiante.readEstudiantes())
+                            adaptador = RecyclerView_Adapter(databaseHelper.readEstudiantes())
                             lista.adapter = adaptador
 
                         }else{
                             estudiante = Estudiante(archived[position].id, archived[position].nombre, archived[position].clave, archived[position].apellido, archived[position].edad)
                             lista.adapter?.notifyItemChanged(position)
-                            adaptador = RecyclerView_Adapter(databaseEstudiante.readEstudiantes())
+                            adaptador = RecyclerView_Adapter(databaseHelper.readEstudiantes())
                             lista.adapter = adaptador
                             val intent = Intent(this@CrudEstudiantes, EditEstudiante::class.java)
                             intent.putExtra("Estudiante", estudiante)
@@ -130,7 +130,7 @@ class CrudEstudiantes : AppCompatActivity() {
     }
 
     private fun getListOfPersons() {
-        adaptador = RecyclerView_Adapter(databaseEstudiante.readEstudiantes())
+        adaptador = RecyclerView_Adapter(databaseHelper.readEstudiantes())
         lista.adapter = adaptador
     }
 }

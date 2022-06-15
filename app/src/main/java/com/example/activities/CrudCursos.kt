@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.models.Curso
-import com.example.models.DatabaseCurso
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
@@ -24,7 +24,7 @@ import kotlin.collections.ArrayList
 class CrudCursos : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    internal var databaseCurso = DatabaseCurso(this)
+    internal var databaseHelper = DatabaseHelper(this)
     lateinit var lista: RecyclerView
     lateinit var adaptador:RecyclerView_AdapterCursos
     lateinit var curso: Curso
@@ -36,8 +36,8 @@ class CrudCursos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crud_cursos)
 
-        this.databaseCurso.insertData(Curso(2, "inge", 2, 3))
-        var cursos = this.databaseCurso.readCursos()
+
+        var cursos = this.databaseHelper.readCursos()
         personArg =  intent.getSerializableExtra("Login") as Estudiante
 
         val searchIcon = findViewById<ImageView>(R.id.search_mag_icon)
@@ -73,7 +73,7 @@ class CrudCursos : AppCompatActivity() {
                 val fromPosition: Int = viewHolder.adapterPosition
                 val toPosition: Int = target.adapterPosition
 
-                Collections.swap(databaseCurso.readCursos(), fromPosition, toPosition)
+                Collections.swap(databaseHelper.readCursos(), fromPosition, toPosition)
 
                 lista.adapter?.notifyItemMoved(fromPosition, toPosition)
 
@@ -83,20 +83,20 @@ class CrudCursos : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 position = viewHolder.adapterPosition
-                archived = databaseCurso.readCursos()
+                archived = databaseHelper.readCursos()
 
                 if(direction == ItemTouchHelper.LEFT){
-                    databaseCurso.deleteData(archived[position].id.toString())
+                    databaseHelper.deleteCurso(archived[position].id.toString())
                     lista.adapter?.notifyItemRemoved(position)
-                    adaptador = RecyclerView_AdapterCursos(databaseCurso.readCursos())
+                    adaptador = RecyclerView_AdapterCursos(databaseHelper.readCursos())
                     lista.adapter = adaptador
 
                 }else{
                     curso = Curso(archived[position].id, archived[position].descripcion, archived[position].creditos, archived[position].idEstudiante)
                     lista.adapter?.notifyItemChanged(position)
-                    adaptador = RecyclerView_AdapterCursos(databaseCurso.readCursos())
+                    adaptador = RecyclerView_AdapterCursos(databaseHelper.readCursos())
                     lista.adapter = adaptador
-                    val intent = Intent(this@CrudCursos, EditEstudiante::class.java)
+                    val intent = Intent(this@CrudCursos, EditCurso::class.java)
                     intent.putExtra("Curso", curso)
                     intent.putExtra("Login", personArg)
                     startActivity(intent)
@@ -126,14 +126,14 @@ class CrudCursos : AppCompatActivity() {
 
         val add: FloatingActionButton = findViewById(R.id.add)
         add.setOnClickListener {
-            val i = Intent(this@CrudCursos, AddEstudiante::class.java)
+            val i = Intent(this@CrudCursos, AddCurso::class.java)
             i.putExtra("Login", personArg)
             startActivity(i)
         }
     }
 
     private fun getListOfCursos() {
-        adaptador = RecyclerView_AdapterCursos(databaseCurso.readCursos())
+        adaptador = RecyclerView_AdapterCursos(databaseHelper.readCursos())
         lista.adapter = adaptador
     }
 }

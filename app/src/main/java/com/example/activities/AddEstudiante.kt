@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import com.example.models.DatabaseEstudiante
+import com.example.models.DatabaseHelper
 import com.example.models.Estudiante
 
 class AddEstudiante : AppCompatActivity() {
     lateinit var personArg : Estudiante
-    internal var databaseEstudiante = DatabaseEstudiante(this)
+    internal var databaseHelper = DatabaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,14 +18,14 @@ class AddEstudiante : AppCompatActivity() {
 
         personArg = intent.getSerializableExtra("Login") as Estudiante
 
-        val agregar = findViewById<Button>(R.id.btnAgregar)
+        val agregar = findViewById<Button>(R.id.btnEditar)
 
         agregar.setOnClickListener{
-            var editTextNombre = findViewById<EditText>(R.id.editTextNombreAdd)
-            var editTextApellido = findViewById<EditText>(R.id.editTextApellidoAdd)
-            var editTextCedula = findViewById<EditText>(R.id.editTextNombreAdd)
+            var editTextNombre = findViewById<EditText>(R.id.editTextDescripcionAdd)
+            var editTextApellido = findViewById<EditText>(R.id.editTextEstudianteAdd)
+            var editTextCedula = findViewById<EditText>(R.id.editTextDescripcionAdd)
             var editTextClave = findViewById<EditText>(R.id.editTextClave)
-            var editTextEdad = findViewById<EditText>(R.id.editTextEdadAdd)
+            var editTextEdad = findViewById<EditText>(R.id.editTextCreditosAdd)
 
             var nombre = editTextNombre.text.toString()
             var apellido = editTextApellido.text.toString()
@@ -35,7 +35,7 @@ class AddEstudiante : AppCompatActivity() {
 
             val estudiante = Estudiante(cedula,
                 nombre, clave, apellido, edad)
-            databaseEstudiante.insertData(estudiante)
+            databaseHelper.insertEstudiante(estudiante)
             val intent = Intent(this, CrudEstudiantes::class.java)
             intent.putExtra("Login", personArg)
             startActivity(intent)

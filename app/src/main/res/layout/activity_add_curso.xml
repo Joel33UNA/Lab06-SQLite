@@ -5,6 +5,49 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddCurso">
-
+        tools:context=".AddEstudiante">
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editTextEstudianteAdd"
+            android:hint="ID Estudiante" android:layout_marginEnd="100dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="102dp"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toTopOf="@+id/editTextCreditosAdd"
+            android:layout_marginBottom="30dp"/>
+    <TextView
+            android:text="Agregar Curso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView3"
+            android:textSize="30sp" android:layout_marginEnd="93dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="94dp"
+            android:layout_marginBottom="70dp" app:layout_constraintBottom_toTopOf="@+id/editTextDescripcionAdd"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextDescripcionAdd"
+            android:hint="Descripción"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="100dp"
+            android:layout_marginEnd="101dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEstudianteAdd" android:layout_marginBottom="30dp"/>
+    <Button
+            android:text="Agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/btnEditar"
+            app:backgroundTint="#4CAF50"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="250dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="158dp"
+            android:layout_marginEnd="149dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editTextCreditosAdd"
+            android:hint="Créditos" android:layout_marginEnd="100dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="102dp"
+            android:layout_marginBottom="30dp" app:layout_constraintBottom_toTopOf="@+id/btnEditar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
